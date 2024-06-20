@@ -10,7 +10,7 @@ This project is a Job Portal Application designed to connect job seekers (candid
 
 - **User Authentication**: Sign up and log in for both companies and candidates.
 - **Job Management**: Companies can create, read, update, and delete job listings.
-- **Application Management**: Candidates can apply for jobs, view their application status, and track their application history.
+- **Application Management**: Candidates can apply for jobs, view their application status .
 - **Dashboard**: Personalized dashboards for companies and candidates to manage job postings and applications respectively.
 - **Session Management**: User sessions are maintained to ensure secure and personalized user experiences.
  
@@ -34,6 +34,8 @@ This project is a Job Portal Application designed to connect job seekers (candid
 2. **Install dependencies**:
     ```bash
     npm install
+    npm install express --save
+
     ```
 
 3. **Start MongoDB**: Make sure you have MongoDB installed and running. You can start it using the following command:
