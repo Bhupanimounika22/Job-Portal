@@ -35,6 +35,8 @@ This project is a Job Portal Application designed to connect job seekers (candid
     ```bash
     npm install
     npm install express --save
+    npm install ejs express-session mongoose nodemon --save
+
 
     ```
 
