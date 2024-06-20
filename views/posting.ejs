@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Posts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .btn-pink {
+            background-color: #ff69b4;  
+            border-color: #ff69b4;
+            color: white;
+        }
+
+        .btn-pink:hover {
+            background-color: white;  
+            border-color: #ff1493;
+            color: #ff69b4;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer .footer-content {
+            text-align: center;
+        }
+
+        footer h5 {
+            color: #ff69b4;
+            font-weight: 700;
+        }
+
+        footer p {
+            color: #6c757d;
+        }
+
+        footer a {
+            color: #343a40;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #ff69b4;
+        }
+    </style>
+</head>
+<body>
+    <header class="py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <h1 class="h3">Internship Posts</h1>
+                <p class="m-0">Find your next opportunity</p>
+            </div>
+            <nav class="d-flex align-items-center">
+                <% if (user) { %>
+                    <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
+                    <a class="nav-link text-dark" href="/profile">Profile</a>
+                    <div class="auth-buttons d-flex">
+                        <a href="/logout"><button class="btn btn-secondary btn-sm">Logout</button></a>
+                    </div>
+                <% } else { %>
+                    <a class="nav-link text-dark" href="/">Home</a>
+                    <a class="nav-link text-dark" href="/signup">Signup</a>
+                    <a class="nav-link text-dark" href="/login">Login</a>
+                 
+                <% } %>
+            </nav>
+        </div>
+    </header>
+    <main class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-10 mx-auto">
+                <h2 class="mb-4">Available Internship Posts</h2>
+                <div class="card-deck">
+                    <% if (items.length > 0 ) { %>
+                        <% items.forEach(item => { %>
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= item.job_title %> at <%= item.company_name %></h5>
+                                    <p class="card-text"><%= item.description %></p>
+                                    <% if (item.postedBy && item.postedBy.companyname) { %>
+                                        <p class="card-text">Posted by: <%= item.postedBy.companyname %></p>
+                                    <% } else { %>
+                                        <p class="card-text">Posted by: Unknown</p>
+                                    <% } %>
+                                    <a href="/internships/<%= item._id %>" class="btn btn-pink">View Details</a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No posts available.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container footer-content">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>We are committed to connecting students and recent graduates with the best internship opportunities available.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact</h5>
+                    <p>Email: support@internshipposts.com</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <a href="#" class="text-dark mx-2">Facebook</a>
+                    <a href="#" class="text-dark mx-2">Twitter</a>
+                    <a href="#" class="text-dark mx-2">LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-4">
+                <p class="m-0">&copy; 2024 Internship Posts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

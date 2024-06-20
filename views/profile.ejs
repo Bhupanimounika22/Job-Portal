@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    header {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        margin-bottom: 10px;
+        color: #ff4081;
+    }
+    
+    nav a {
+        margin-right: 15px;
+        color: #343a40;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    nav a:hover {
+        color: #ff4081;
+    }
+    
+    h2 {
+        color: #ff4081;
+        margin-bottom: 20px;
+    }
+    
+    .form-container {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    label {
+        margin-bottom: 5px;
+        color: #343a40;
+        font-weight: bold;
+    }
+    
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    button {
+        background-color: #ff4081;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    
+    button:hover {
+        background-color: #e63971;
+    }
+    .btn-primary{
+        background-color: #ff4081;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+    }
+    .btn-primary:hover{
+        background-color: #e63971;
+
+
+    }
+ </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <header class="mb-4">
+            <h1>Profile</h1>
+            <nav>
+                <a href="/posting">Home</a> | <a href="/dashboard">Dashboard</a> | <a href="/logout">Logout</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Update Profile</h2>
+            <form action="/profile" method="POST" class="form-container">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="firstname" class="form-control" value="<%= user.firstname %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" value="<%= user.email %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="bio">Bio:</label>
+                    <textarea id="bio" name="bio" class="form-control"><%= user.bio %></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

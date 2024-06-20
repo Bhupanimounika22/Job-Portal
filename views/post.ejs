@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= internship.job_title %> - Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .internship-detail {
+
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 160px auto;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn
+            {
+                padding: 10px 20px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #ff4081;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                margin-left: 250px;
+            }
+            .btn[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+        
+    </style>
+</head>
+<body>
+    <div class="internship-detail">
+        <h2><%= internship.job_title %></h2>
+        <p><strong>Company:</strong> <%= internship.company_name %></p>
+        <p><strong>Location:</strong> <%= internship.location %></p>
+        <p><strong>Skills:</strong> <%= internship.skills.join(', ') %></p>
+        <p><strong>Duration:</strong> <%= internship.duration %></p>
+        <p><strong>Start Date:</strong> <%= new Date(internship.start_date).toLocaleDateString() %></p>
+        <p><strong>Application Deadline:</strong> <%= new Date(internship.application_deadline).toLocaleDateString() %></p>
+        <p><strong>Description:</strong> <%= internship.description %></p>
+
+        <% if (user && user.type === 'Candidate') { %>
+            <form action="/apply/<%= internship._id %>" method="post">
+                <button type="submit">Apply</button>
+            </form>
+        <% } else if (!user) { %>
+            <p><a href="/login">Login</a> to apply for this internship.</p>
+        <% } else { %>
+            <p>Only candidates can apply for this internship.</p>
+        <% } %>
+    </div>
+    <a href="/posting" class="back"><button class="btn">Back to Listings</button></a>
+</body>
+</html>

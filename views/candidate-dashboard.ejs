@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+          }
+          
+          header {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #ff4081;
+          }
+          
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          
+          nav a {
+            margin: 0 15px;
+            font-size: 16px;
+            color: #343a40;
+            text-decoration: none;
+          }
+          
+          nav a:hover {
+            color: #ff4081;
+          }
+          
+          main {
+            padding: 60px 20px;
+          }
+          
+          h1, h2 {
+            color: #ff4081;
+          }
+          
+          .application {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+          }
+          
+          .application h3 {
+            margin-top: 0;
+            color: #343a40;
+          }
+          
+          .application p {
+            color: #6c757d;
+          }
+          
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-text">Welcome, <%= user.firstname %> <%= user.lastname %></span>
+            <div>
+                <a href="/profile">Profile</a> | <a href="/logout">Logout</a> |  <a href="/posting">Home</a> 
+            </div> 
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Candidate Dashboard</h1>
+        <h2>Your Applications</h2>
+        <% applications.forEach(application => { %>
+            <% if (application.internship) { %>
+                <div class="application">
+                    <h3><%= application.internship.job_title %> at <%= application.internship.company_name %></h3>
+                    <p><%= application.internship.description %></p>
+                    <a href="/internships/<%= application.internship._id %>">View Details</a>
+                    <form action="/cancel-application/<%= application._id %>" method="POST" onsubmit="return confirm('Are you sure you want to cancel this application?');">
+                        <button type="submit" class="btn btn-danger">Cancel Application</button>
+                    </form>
+                </div>
+            <% } else { %>
+                <div class="application">
+                    <h3>Unknown Position</h3>
+                    <p>Details of this application are not available.</p>
+                    <form action="/cancel-application/<%= application._id %>" method="POST" onsubmit="return confirm('Are you sure you want to cancel this application?');">
+                        <button type="submit" class="btn btn-danger">Cancel Application</button>
+                    </form>
+                </div>
+            <% } %>
+        <% }) %>
+    </main>
+</body>
+</html>

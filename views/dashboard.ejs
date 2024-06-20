@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <nav>
+        <a href="/profile">Profile</a> | <a href="/logout">Logout</a>
+    </nav>
+
+    <h2>Available Internships</h2>
+    <ul>
+        <% items.forEach(internship => { %>
+            <li>
+                <h3><%= internship.job_title %></h3>
+                <p><%= internship.company_name %> - <%= internship.location %></p>
+                <p><%= internship.description %></p>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

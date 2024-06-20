@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Posting Form</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color:#ff4081;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #skillsContainer {
+            margin-bottom: 15px;
+        }
+        .skillInput {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #addSkill {
+            background-color:#ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        #addSkill:hover {
+            background-color: #8000b3;
+        }
+        .deleteSkill {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .button{
+            background-color:#ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            width: 300px;
+            margin-left: 170px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Post an Internship</h2>
+    <form action="/internships" method="post" id="internshipForm">
+        <label for="job_title">Job Title:</label>
+        <input type="text" id="job_title" name="job_title" required>
+        
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" required>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+        
+        <label for="description">Job Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        
+        <label for="requirements">Requirements:</label>
+        <textarea id="requirements" name="requirements" rows="4" required></textarea>
+        
+        <div id="skillsContainer">
+            <label for="skills">Skills:</label>
+            <div id="skillsInputs">
+                <div>
+                    <input type="text" class="skillInput" name="skills[]" required>
+                 </div>
+            </div>
+            <button type="button" id="addSkill">Add Skill</button>
+        </div>
+        
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" name="duration" required>
+        
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+        
+        <label for="application_deadline">Application Deadline:</label>
+        <input type="date" id="application_deadline" name="application_deadline" required>
+        
+        <input type="submit" value="Post Internship" class="button">
+    </form>
+
+    <script>
+        document.getElementById("addSkill").addEventListener("click", function() {
+            var skillsInputs = document.getElementById("skillsInputs");
+            var newInput = document.createElement("div");
+             skillsInputs.appendChild(newInput);
+             newInput.innerHTML = '<input type="text" class="skillInput" name="skills[]" required><button type="button" class="deleteSkill">Delete</button>';
+
+            newInput.querySelector('.deleteSkill').addEventListener("click", function() {
+                newInput.remove();
+            });
+        });
+    </script>
+</body>
+</html>

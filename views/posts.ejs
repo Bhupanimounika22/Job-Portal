@@ -1,0 +1,38 @@
+<!-- views/internships.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Listings</title>
+    <style>
+        .internship {
+            border: 1px solid #000;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .know-more {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Available Internships</h2>
+    <div id="internshipListings">
+        <% items.forEach(internship => { %>
+            <div class="internship">
+                <h3><%= internship.job_title %></h3>
+                <p><strong>Company:</strong> <%= internship.company_name %></p>
+                <p><strong>Location:</strong> <%= internship.location %></p>
+                <p><strong>Skills:</strong> <%= internship.skills.join(', ') %></p>
+                <p><strong>Duration:</strong> <%= internship.duration %></p>
+                <p><strong>Start Date:</strong> <%= new Date(internship.start_date).toLocaleDateString() %></p>
+                <p><strong>Application Deadline:</strong> <%= new Date(internship.application_deadline).toLocaleDateString() %></p>
+                
+                <a href="/internships/<%= internship._id %>" class="know-more">Know More</a>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
