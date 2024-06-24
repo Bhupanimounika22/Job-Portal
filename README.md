@@ -27,7 +27,7 @@ This project is a Job Portal Application designed to connect job seekers (candid
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/job-portal.git
+    git clone https://github.com/Bhupanimounika22/job-portal.git
     cd job-portal
     ```
 
