@@ -7,7 +7,7 @@ const session = require('express-session');
 
 const { Company, Candidates, Intership, Application } = require('./models/models');
 
-const port = 5767;
+const PORT= 5767;
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/job");
@@ -373,6 +373,6 @@ app.post('/cancel-application/:id', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log(`server running on http://localhost:${port}`);
 });
